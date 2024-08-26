@@ -152,9 +152,6 @@ class App {
       const cadence = +inputCadence.value;
       //check if data is valid
       if (
-        // !Number.isFinite(distance) ||
-        // !Number.isFinite(duration) ||
-        // !Number.isFinite(cadence)
         !validInputs(distance, duration, cadence) ||
         !allPositive(distance, duration, cadence)
       )
@@ -180,7 +177,6 @@ class App {
     this._renderWorkout(workout);
 
     //Hide the form + clear input fields
-
     //Clear input fields
     this._hideForm();
 
