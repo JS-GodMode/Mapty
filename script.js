@@ -215,8 +215,10 @@ class App {
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
       <h2 class="workout__title">${workout.description}</h2>
-      <button class="workout__ workout--edit">edit</button>
-      <button class="workout__ workout--delete">delete</button>
+      <div class="workout__mods">
+        <button class="workout__ workout--edit">edit</button>
+        <button class="workout__ workout--delete">delete</button>
+      </div>
       <div class="workout__details">
         <span class="workout__icon">${
           workout.type === 'running' ? '🏃‍♂️' : '🚵🏾'
@@ -229,6 +231,7 @@ class App {
         <span class="workout__value">${workout.duration}</span>
         <span class="workout__unit">min</span>
       </div>
+
     `;
 
     if (workout.type === 'running')
