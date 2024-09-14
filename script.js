@@ -66,6 +66,8 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+const btnEdit = document.querySelector('.workout--edit');
+const btnDelete = document.querySelector('.workout--delete');
 
 class App {
   #map;
@@ -170,7 +172,15 @@ class App {
       workout = new Cycling([lat, lng], distance, duration, elevation);
     }
     //Add new object to workout array
+    console.log(workout.__proto__);
     this.#workouts.push(workout);
+    console.log(this.#workouts[0].__proto__);
+    // this.#workouts = this.#workouts.map(
+    //   work => (work.__proto__ = workout.__proto__)
+    // );
+
+    // this.#workouts.forEach(work => (work.__proto__ = workout.__proto__));
+
     //Render workout on map as marker
     this._renderWorkoutMarker(workout);
     //Render workout on list
@@ -205,6 +215,8 @@ class App {
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
       <h2 class="workout__title">${workout.description}</h2>
+      <button class="workout__ workout--edit">edit</button>
+      <button class="workout__ workout--delete">delete</button>
       <div class="workout__details">
         <span class="workout__icon">${
           workout.type === 'running' ? '🏃‍♂️' : '🚵🏾'
@@ -267,6 +279,7 @@ class App {
   }
 
   _saveToLocalStorage(workout) {
+    // console.log(workout);
     localStorage.setItem('workouts', JSON.stringify(this.#workouts));
   }
 
@@ -274,11 +287,30 @@ class App {
     const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
-    this.#workouts = data;
+    // if (data) data.forEach(work => console.log(work));
+    this.#workouts = data.map(work => {
+      if (work.type === 'running')
+        return new Running(
+          work.coords,
+          work.distance,
+          work.duration,
+          work.cadence
+        );
+      if (work.type === 'cycling')
+        return new Cycling(
+          work.coords,
+          work.distance,
+          work.duration,
+          work.elevationGain
+        );
+    });
+    console.log(this.#workouts);
+    // this.#workouts = data;
 
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
     });
+    console.log(this.#workouts[0].__proto__);
   }
 
   reset() {

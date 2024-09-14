@@ -1,0 +1,25 @@
+{
+  "name": "mapty",
+  "version": "2.0.0",
+  "default": "script.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JS-GodMode/Mapty.git"
+  },
+  "author": "Anonav0",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JS-GodMode/Mapty/issues"
+  },
+  "homepage": "https://github.com/JS-GodMode/Mapty#readme",
+  "description": "",
+  "dependencies": {
+    "core-js": "^3.38.1",
+    "parcel": "^2.12.0",
+    "regenerator-runtime": "^0.14.1"
+  }
+}
