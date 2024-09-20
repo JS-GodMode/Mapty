@@ -23,12 +23,13 @@ class Workout {
 
 class Running extends Workout {
   type = 'running';
-  constructor(coords, distance, duration, cadence) {
-    super(coords, distance, duration);
+  constructor(coords, distance, duration, cadence, id) {
+    super(coords, distance, duration, id);
     this.cadence = cadence;
     this.calcPace();
     this._getDescription();
   }
+
   calcPace() {
     //min/km
     this.pace = this.duration / this.distance;
@@ -83,23 +84,24 @@ class App {
     inputType.addEventListener('change', this._toggleElevationField);
 
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+    containerWorkouts.addEventListener('click', this._modifyEntry.bind(this));
   }
 
-  _getPosition() {
+  async _getPosition() {
     if (navigator.geolocation)
-      navigator.geolocation.getCurrentPosition(
+      await navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
         function () {
           alert('Could not get your position.');
         }
       );
   }
-  _loadMap(position) {
+  async _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     const coords = [latitude, longitude];
 
-    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
+    this.#map = await L.map('map').setView(coords, this.#mapZoomLevel);
     L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution:
@@ -216,8 +218,8 @@ class App {
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
       <h2 class="workout__title">${workout.description}</h2>
       <div class="workout__mods">
-        <button class="workout__ workout--edit">edit</button>
-        <button class="workout__ workout--delete">delete</button>
+        <button class="workout__ workout_mod workout--edit">edit</button>
+        <button class="workout__ workout_mod workout--delete">delete</button>
       </div>
       <div class="workout__details">
         <span class="workout__icon">${
@@ -281,6 +283,21 @@ class App {
     });
   }
 
+  _modifyEntry(e) {
+    const workoutEl = e.target.closest('.workout');
+    if (!workoutEl) return;
+    const workoutModEl = e.target.closest('.workout_mod')?.className;
+    if (!workoutModEl) return;
+    // console.log(workoutModEl.includes('workout--edit'));
+    // console.log(workoutModEl.includes('workout--delete'));
+
+    if (workoutModEl.includes('workout--delete')) {
+      console.log(typeof workoutEl.dataset.id);
+      const newWorkouts = this.#workouts.filter(workout => workout.id);
+      console.log(newWorkouts);
+    }
+  }
+
   _saveToLocalStorage(workout) {
     // console.log(workout);
     localStorage.setItem('workouts', JSON.stringify(this.#workouts));
@@ -290,22 +307,24 @@ class App {
     const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
-    // if (data) data.forEach(work => console.log(work));
+    if (data) data.forEach(work => console.log(work));
     this.#workouts = data.map(work => {
-      if (work.type === 'running')
+      if (work.type === 'running') {
         return new Running(
           work.coords,
           work.distance,
           work.duration,
           work.cadence
         );
-      if (work.type === 'cycling')
+      }
+      if (work.type === 'cycling') {
         return new Cycling(
           work.coords,
           work.distance,
           work.duration,
           work.elevationGain
         );
+      }
     });
     console.log(this.#workouts);
     // this.#workouts = data;
