@@ -88,5 +88,5 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 **Your Name**
 
--   GitHub: [yourusername](https://github.com/Anonav0)
--   LinkedIn: [Your LinkedIn](https://in.linkedin.com/in/swarnavo-khanra)
+-   GitHub: [Anonav0](https://github.com/Anonav0)
+-   LinkedIn: [Swarnavo Khanra](https://in.linkedin.com/in/swarnavo-khanra)
