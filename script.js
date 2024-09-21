@@ -288,13 +288,17 @@ class App {
     if (!workoutEl) return;
     const workoutModEl = e.target.closest('.workout_mod')?.className;
     if (!workoutModEl) return;
-    // console.log(workoutModEl.includes('workout--edit'));
-    // console.log(workoutModEl.includes('workout--delete'));
 
-    if (workoutModEl.includes('workout--delete')) {
-      console.log(typeof workoutEl.dataset.id);
-      const newWorkouts = this.#workouts.filter(workout => workout.id);
-      console.log(newWorkouts);
+    if (
+      workoutModEl.includes('workout--delete') &&
+      window.confirm('Are you sure about deleting this entry?')
+    ) {
+      const updatedWorkouts = this.#workouts.filter(
+        workout => workout.id !== workoutEl.dataset.id
+      );
+      this.#workouts = updatedWorkouts;
+      this._saveToLocalStorage();
+      location.reload();
     }
   }
 
@@ -307,32 +311,14 @@ class App {
     const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
-    if (data) data.forEach(work => console.log(work));
-    this.#workouts = data.map(work => {
-      if (work.type === 'running') {
-        return new Running(
-          work.coords,
-          work.distance,
-          work.duration,
-          work.cadence
-        );
-      }
-      if (work.type === 'cycling') {
-        return new Cycling(
-          work.coords,
-          work.distance,
-          work.duration,
-          work.elevationGain
-        );
-      }
-    });
+
+    this.#workouts = data;
     console.log(this.#workouts);
     // this.#workouts = data;
 
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
     });
-    console.log(this.#workouts[0].__proto__);
   }
 
   reset() {
