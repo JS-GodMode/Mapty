@@ -61,8 +61,11 @@ class Cycling extends Workout {
 //APPLICATION ARCHITECTURE
 
 const form = document.querySelector('.form');
+const updateForm = document.querySelector('.form--update');
 const containerWorkouts = document.querySelector('.workouts');
 const inputType = document.querySelector('.form__input--type');
+// const updateInputType = document.querySelector('.form__input--type');
+
 const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
@@ -116,9 +119,15 @@ class App {
   }
   _showForm(mapE) {
     this.#mapEvent = mapE;
+    // console.log(this.#mapEvent);
     form.classList.remove('hidden');
     inputDistance.focus();
   }
+
+  // _showForm() {
+  //   form.classList.remove('hidden');
+  //   inputDistance.focus();
+  // }
   _hideForm() {
     //clear inputs
     inputDistance.value =
@@ -299,6 +308,17 @@ class App {
       this.#workouts = updatedWorkouts;
       this._saveToLocalStorage();
       location.reload();
+    }
+    if (workoutModEl.includes('workout--edit')) {
+      console.log(typeof workoutEl.dataset.id);
+
+      const workoutIndex = this.#workouts.findIndex(
+        workout => workout.id === workoutEl.dataset.id
+      );
+
+      const workout = this.#workouts[workoutIndex];
+
+      // this._showForm();
     }
   }
 
