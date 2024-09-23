@@ -1,6 +1,4 @@
-
-
-![ezgif com-optimize(1)](https://github.com/user-attachments/assets/15961d9e-ba27-4fe2-b155-86ea8651b4f5)
+![ScreenRecording2024-09-23220031-ezgif com-optimize](https://github.com/user-attachments/assets/90bae04f-7f29-4ea6-bd9a-e18997681846)
 
 # Mapty
 
@@ -31,15 +29,16 @@
 ### Installation
 
 1. Clone the repository to your local machine:
+
    ```bash
    git clone 'https://github.com/JS-GodMode/Mapty.git`
    ```
 
-1.  Navigate to the project directory:
-    ```bash
-     cd mapty
-    ```
-2.  Open the `index.html` file in your browser.
+1. Navigate to the project directory:
+   ```bash
+    cd mapty
+   ```
+1. Open the `index.html` file in your browser.
 
 ### Usage
 
@@ -47,27 +46,24 @@
 2.  **Log Workouts**: Once the map is displayed, click anywhere on the map or use your current location to log a workout. Enter details such as distance, duration, and select whether it is a cycling or running workout.
 3.  **View Workouts**: Each logged workout will appear on the map with the location and details. You can view, track, and analyze your activities directly on the map.
 
-API Information
----------------
+## API Information
 
 This app uses the [Geocode.xyz](https://geocode.xyz/) API to obtain address details based on latitude and longitude. You can sign up for an API key and follow their usage limits as specified in their documentation.
 
 ### How It Works:
 
--   **Geolocation**: The app uses the browser's built-in Geolocation API to fetch the user's current coordinates (latitude, longitude).
--   **Reverse Geocoding**: These coordinates are then sent to the Geocode.xyz API to retrieve human-readable address details for the logged workouts.
+- **Geolocation**: The app uses the browser's built-in Geolocation API to fetch the user's current coordinates (latitude, longitude).
+- **Reverse Geocoding**: These coordinates are then sent to the Geocode.xyz API to retrieve human-readable address details for the logged workouts.
 
-Project Status
---------------
+## Project Status
 
 This project is currently in development. Planned future enhancements include:
 
--   Editing and deleting workouts.
--   Filtering workouts by type (cycling/running).
--   User authentication and saved workout history.
+- Editing and deleting workouts.
+- Filtering workouts by type (cycling/running).
+- User authentication and saved workout history.
 
-Contributing
-------------
+## Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to check out the [issues page](https://github.com/JS-GodMode/mapty/issues).
 
@@ -77,16 +73,15 @@ To contribute:
 2.  Create a new branch for your feature or bugfix.
 3.  Submit a pull request explaining your changes.
 
-License
--------
+## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
-* * * * *
+---
 
 ### Author
 
 **Your Name**
 
--   GitHub: [Anonav0](https://github.com/Anonav0)
--   LinkedIn: [Swarnavo Khanra](https://in.linkedin.com/in/swarnavo-khanra)
+- GitHub: [Anonav0](https://github.com/Anonav0)
+- LinkedIn: [Swarnavo Khanra](https://in.linkedin.com/in/swarnavo-khanra)
