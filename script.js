@@ -227,7 +227,6 @@ class App {
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
       <h2 class="workout__title">${workout.description}</h2>
       <div class="workout__mods">
-        <button class="workout__ workout_mod workout--edit">edit</button>
         <button class="workout__ workout_mod workout--delete">delete</button>
       </div>
       <div class="workout__details">
@@ -308,17 +307,6 @@ class App {
       this.#workouts = updatedWorkouts;
       this._saveToLocalStorage();
       location.reload();
-    }
-    if (workoutModEl.includes('workout--edit')) {
-      console.log(typeof workoutEl.dataset.id);
-
-      const workoutIndex = this.#workouts.findIndex(
-        workout => workout.id === workoutEl.dataset.id
-      );
-
-      const workout = this.#workouts[workoutIndex];
-
-      // this._showForm();
     }
   }
 
