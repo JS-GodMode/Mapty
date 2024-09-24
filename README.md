@@ -4,6 +4,10 @@
 
 **Mapty** is a JavaScript-based web application that allows users to track their cycling and running workouts on a map. It leverages geolocation to pinpoint the user's position and allows for the visualization of workout data such as distance, time, and workout type.
 
+## Live Demo
+
+**check out the site on :** https://js-godmode.github.io/Mapty/
+
 ## Features
 
 - **Track Workouts**: Users can log cycling and running data.
@@ -81,7 +85,7 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ### Author
 
-**Your Name**
+**Swarnavo Khanra**
 
 - GitHub: [Anonav0](https://github.com/Anonav0)
 - LinkedIn: [Swarnavo Khanra](https://in.linkedin.com/in/swarnavo-khanra)
